@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 // All Mana icons can be found here
 // https://andrewgioia.github.io/Mana/icons.html

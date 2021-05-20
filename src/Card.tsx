@@ -1,6 +1,5 @@
-import React from "react";
-
-import ManaSymbol from "./ManaSymbol";
+import React from 'react';
+import ManaSymbol from './lib/ui/mana-symbol/ManaSymbol';
 
 const Card = () => {
   return (
