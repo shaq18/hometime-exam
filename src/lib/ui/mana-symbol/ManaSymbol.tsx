@@ -1,11 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Text } from '../../components/text';
+import { S } from './style';
 
-// All Mana icons can be found here
-// https://andrewgioia.github.io/Mana/icons.html
-// the class names and attributes can be found here:
-// https://andrewgioia.github.io/Mana/attributes.html
-const ManaSymbol = () => {
-  return <i className="ms ms-u ms-cost" />;
+interface ManaSymbolProps {
+  mana?: string | null;
+}
+const ManaSymbol = ({ mana }: ManaSymbolProps) => {
+  const [icons, setIcons] = useState<React.ReactNode | null>(null);
+
+  useEffect(() => {
+    if (mana) {
+      const matchedString = mana.match(/{(.*?)}/g);
+      const manaArr =
+        matchedString &&
+        matchedString.map((item) => {
+          return item.replace(/[{}]/g, '').toLowerCase();
+        });
+
+      const convertedIcons =
+        manaArr &&
+        manaArr.map((item, i) => {
+          return <S.Icon key={`icon-${i}`} className={`ms ms-${item} ms-cost`} />;
+        });
+
+      setIcons(convertedIcons);
+    }
+  }, [mana]);
+
+  if (mana) {
+    return <>{icons}</>;
+  }
+
+  return <Text as={S.NoMana}>N/A</Text>;
 };
 
 export default ManaSymbol;

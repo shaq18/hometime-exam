@@ -1,14 +1,17 @@
-import { useTheme } from '@emotion/react';
 import React from 'react';
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+import { S } from './style';
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  as?: any;
   color?: 'primary' | 'secondary';
+  children: React.ReactNode | string;
 }
 
-const Button = ({ color = 'primary', ...props }: ButtonProps) => {
-  const { colors }: any = useTheme();
-
-  return <button {...props} />;
+const Button = ({ as, color = 'primary', children, ...props }: ButtonProps) => {
+  return (
+    <S.Button {...props} color={color} as={as}>
+      <span>{children}</span>
+    </S.Button>
+  );
 };
 
 export default Button;

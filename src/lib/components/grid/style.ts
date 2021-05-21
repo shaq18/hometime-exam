@@ -3,7 +3,13 @@ import styled from '@emotion/styled';
 import { GridProps } from './Grid';
 
 const Grid = styled.div<GridProps>`
-  ${({ container }) => css`
+  ${({ alignSelf, container }) => css`
+    transition: opacity 0.3s ease-out;
+    ${alignSelf &&
+    css`
+      align-self: ${alignSelf};
+    `}
+
     ${container &&
     css`
       display: grid;
