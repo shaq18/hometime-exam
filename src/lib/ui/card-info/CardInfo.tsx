@@ -48,8 +48,6 @@ const CardInfo = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log(card);
-
   return (
     <>
       <Section>
